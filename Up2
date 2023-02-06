@@ -1,0 +1,137 @@
+#include <iostream>
+using namespace std;
+
+//Initializing functions
+void skrivInfo();
+int lasEttTal();
+char lasOpp();
+void ordna(int &a, int &b);
+int berakna (int a, int b, char c);
+void skrivResultat (int a);
+int main () {
+ //Initializing variables
+ int a;
+ int b;
+ int finalAnswer;
+ char calculationMethod;
+ int biggest;
+ int smallest;
+ //Information about the program is written to the user.
+ skrivInfo();
+ //a and b are assigned their values through the function.
+ a = lasEttTal();
+ b = lasEttTal();
+ //The user choose what calculation method they want to use.
+ calculationMethod = lasOpp();
+ //The values are ordered from smallest to biggest.
+ ordna(a, b);
+ //Here the calculations are executed. The values are stored in finalAnswer.
+ finalAnswer = berakna(a, b, calculationMethod);
+ //The result are written.
+ skrivResultat(finalAnswer);
+ return 0;
+}
+void skrivInfo() {
+ cout << "Information: You will enter two numbers and the calculation you want
+to make." << endl;
+ cout << "The calculation will be applied to every number between the two
+numbers, and then give you the sum." <<endl;
+ cout << " " << endl;
+}
+int lasEttTal() {
+ int number;
+ cout << "Please enter a number: " << endl;
+ cin >> number;
+ return number;
+}
+char lasOpp() {
+ char method;
+ int answer;
+ cout << "\nPlease choose what calculation you want to do: " << endl;
+ cout << "1. Addition." << endl;
+ cout << "2. Multiplication." << endl;
+ cout << "3. The sum of squares.\n" << endl;
+ cin >> answer;
+ switch (answer){
+ case 1:
+ {
+ char method = 'a';
+ return method;
+ break;
+ }
+ case 2:
+ {
+ char method = 'm';
+ return method;
+ break;
+ }
+ case 3:
+ {
+ char method = 's';
+ return method;
+ break;
+ }
+ default:
+ {
+ cout << "You have not entered a valid character." << endl;
+ break;
+ }
+ }
+}
+void ordna(int &a, int &b) {
+ //The values are reassigned through reference parameters
+ if (a > b) {
+ int temp = a;
+ a = b;
+ b = temp;
+ }
+}
+int berakna (int a, int b, char c) {
+ int y = 0;
+ int x = 0;
+ char answer = c;
+ //The first time, when x is still 0, the calculations store the i worth in x
+(in the last one, in y), then the next
+ //iteration the else statement is executed.
+ if (answer == 'a'){
+ for (int i = a; i <= b; i++){
+ if (x == 0) {
+ x = i;
+ }
+ else {
+ x = x + i;
+ }
+ }
+ return x;
+ }
+ else if (answer == 'm') {
+ for (int i = a; i <= b; i++) {
+ if (a <= 0) {
+ x = 0;
+ }
+ else if (x == 0) {
+ x = i;
+ }
+ else {
+ x = x * i;
+ }
+ }
+ return x;
+ }
+ else if (answer == 's') {
+ for (int i = a; i <= b; i++) {
+ if (x == 0){
+ x = i * i;
+ y = x;
+ }
+ else {
+ x = i * i;
+ y = y + x;
+ }
+ }
+ return y;
+ }
+}
+void skrivResultat (int a) {
+ cout << "\nThe result is: " << a << endl;
+}
